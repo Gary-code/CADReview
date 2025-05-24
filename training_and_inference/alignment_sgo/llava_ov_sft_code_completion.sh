@@ -1,0 +1,19 @@
+# export NCCL_P2P_DISABLE=1
+# export NCCL_IB_DISABLE=1
+export NPROC_PER_NODE=4 \
+# export DS_SKIP_CUDA_CHECK=1
+SIZE_FACTOR=8 MAX_PIXELS=602112 CUDA_VISIBLE_DEVICES=0,1,2,3 swift sft \
+    --model_type llava_onevision_hf \
+    --model llava-onevision-qwen2-7b-ov-hf \
+    --deepspeed zero3 \
+    --num_train_epochs 1 \
+    --train_type lora \
+    --max_length 6144 \
+    --per_device_train_batch_size 4 \
+    --truncation_strategy delete \
+    --save_strategy steps \
+    --save_steps 3000 \
+    --save_only_model True \
+    --output_dir ./outputs/alignment_code_completion/llava_ov \
+    --eval_strategy no \
+    --dataset ./Dataset/code_completion/dataset_swift_train.jsonl \
