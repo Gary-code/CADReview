@@ -12,7 +12,6 @@ DEFAULT_MAX_SEQUENCE_LEN=96
 DEFAULT_TENSOR_PARALLEL_SIZE=1
 # DEFAULT_MAX_IMAGE_NUMS='{"image":4,"video":2}'
 DEFAULT_MAX_IMAGE_NUMS='{"image":2}'
-# 参数解析函数
 parse_args() {
     while [[ $# -gt 0 ]]; do
         case $1 in
@@ -64,7 +63,6 @@ parse_args() {
     done
 }
 
-# 使用默认值初始化参数
 CUDA_VISIBLE_DEVICES=$DEFAULT_CUDA_VISIBLE_DEVICES
 MODEL_PATH=$DEFAULT_MODEL_PATH
 TEMPLATE=$DEFAULT_TEMPLATE
@@ -75,10 +73,8 @@ LORA_CKPT=$DEFAULT_LORA_CKPT
 MAX_SEQUENCE_LEN=$DEFAULT_MAX_SEQUENCE_LEN
 TENSOR_PARALLEL_SIZE=$DEFAULT_TENSOR_PARALLEL_SIZE
 MAX_IMAGE_NUMS=$DEFAULT_MAX_IMAGE_NUMS
-# 调用参数解析
 parse_args "$@"
 
-# 打印配置供检查
 echo "Using the following configurations:"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 echo "MODEL_PATH: $MODEL_PATH"
@@ -91,7 +87,6 @@ echo "MAX_SEQUENCE_LEN: $MAX_SEQUENCE_LEN"
 echo "TENSOR_PARALLEL_SIZE: $TENSOR_PARALLEL_SIZE"
 echo "MAX_IMAGE_NUMS: $MAX_IMAGE_NUMS"
 
-# 循环，根据 tensor_parallel_size 分组
 IFS=',' read -r -a GPU_ARRAY <<< "$CUDA_VISIBLE_DEVICES"
 
 num_gpus=${#GPU_ARRAY[@]}
@@ -117,7 +112,6 @@ for group in $(seq 0 $((group_count - 1))); do
     echo "Launching on GPUs: $gpu_subset_str with port $port"
 
     if [ -z "$LORA_CKPT" ]; then
-        # 未设置 LORA_CKPT
         swift deploy \
             --model_type $TEMPLATE \
             --merge_lora false \

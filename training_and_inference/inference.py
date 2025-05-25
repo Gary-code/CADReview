@@ -10,7 +10,6 @@ import os
 import sys
 from collections import defaultdict
 import concurrent.futures
-# sys.path.append("/vepfs/fs_users/weiyuancheng-test/LLM4IE-code/wyc-go")
 import random
 from openai import OpenAI   
 import pandas as pd
@@ -32,9 +31,6 @@ def process_item(item, client_pool, model_name="qwen2-vl-7b-instruct", temperatu
         with open(image_path, "rb") as image:
             image_base64.append(base64.b64encode(image.read()).decode("utf-8"))
     input_query = item["messages"][1]["content"].replace("<image>","")
-    # input_query += "\nplease output the block id dirctly!"
-    # input_query = "Please help me describe the content of the picture"
-    # First_round_message = item["messages"][:2]
     First_round_message = [
         {
             "role": "user",
@@ -47,6 +43,10 @@ def process_item(item, client_pool, model_name="qwen2-vl-7b-instruct", temperatu
                 {
                     "type": "image_url",
                     "image_url": {"url": f"data:image/png;base64,{image_base64[1]}"},
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{image_base64[2]}"},
                 }
             ]
         }
@@ -109,6 +109,6 @@ def main(task='qg', port_num=8, model_name='llama3_2-11b-vision-instruct', infer
     
     
 if __name__ == "__main__":
-    main(task="feedback_gen", port_num=4, model_name='llama3_2', infer_type="sft_llm", step='3252')
+    main(task="feedback_gen", port_num=4, model_name='llama3_2', infer_type="sft_llm", step=None)
     
     

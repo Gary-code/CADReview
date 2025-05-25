@@ -146,7 +146,7 @@ class CHAIR(object):
         return words, node_words, idxs, double_words
 
     def get_annotations_from_segments(self):
-        json_path = '/home/cike/VQG/Hallucination/data/imid_to_objects.json'
+        json_path = './data/imid_to_objects.json'
         '''
         Add objects taken from MSCOCO segmentation masks
         '''

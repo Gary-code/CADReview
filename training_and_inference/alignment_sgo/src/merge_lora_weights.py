@@ -11,9 +11,9 @@ def merge_lora(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", type=str, default="/home/devdata/outputs/CADReview/Qwen2-VL-Finetune/output/test_lora/checkpoint-9000")
-    parser.add_argument("--model-base", type=str, default="/home/devdata/pre-trained/qwen/Qwen2-VL-7B-Instruct")
-    parser.add_argument("--save-model-path", type=str, default="/home/devdata/outputs/CADReview/Qwen2-VL-Finetune/output/test_lora/merge_checkpoint-9000")
+    parser.add_argument("--model-path", type=str, default="./outputs/CADReview/Qwen2-VL-Finetune/output/test_lora/checkpoint-9000")
+    parser.add_argument("--model-base", type=str, default="./pre-trained/qwen/Qwen2-VL-7B-Instruct")
+    parser.add_argument("--save-model-path", type=str, default="./outputs/CADReview/Qwen2-VL-Finetune/output/test_lora/merge_checkpoint-9000")
     parser.add_argument("--safe-serialization", action='store_true')
 
     args = parser.parse_args()

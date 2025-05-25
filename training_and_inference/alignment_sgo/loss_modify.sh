@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # You can use 2B instead of 7B
-MODEL_NAME="/home/devdata/pre-trained/qwen/Qwen2-VL-7B-Instruct"
+MODEL_NAME="./pre-trained/qwen/Qwen2-VL-7B-Instruct"
 # MODEL_NAME="Qwen/Qwen2-VL-2B-Instruct"
 
 export PYTHONPATH=src:$PYTHONPATH
