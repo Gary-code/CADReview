@@ -1,5 +1,5 @@
 # CADReview :building_construction:
-[![arXiv](https://img.shields.io/badge/arXiv-2505.xxx-b31b1b.svg)]()
+[![arXiv](https://img.shields.io/badge/arXiv-2505.22304-b31b1b.svg)]()
 
 [**🌐 Homepage**](https://cgl-pro.github.io/cadreview/)  | [**📖 arXiv**]() | [**🤗 HuggingFace Dataset**]() 
 
